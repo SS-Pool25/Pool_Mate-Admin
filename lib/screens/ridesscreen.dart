@@ -77,10 +77,13 @@ class _RideScreenState extends State<RideScreen> {
       case 'confirmed':
         return Colors.grey;
       case 'pending':
+          return Colors.amber;
       case 'accepted':
-        return Colors.amber;
+        return Colors.orange;
+      case 'full':
+        return Colors.yellow;
       default:
-        return Colors.white70;
+        return Colors.blue;
     }
   }
 
@@ -99,42 +102,122 @@ class _RideScreenState extends State<RideScreen> {
 
   Widget buildRideCard(dynamic ride) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      padding: const EdgeInsets.all(14),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF323244),
-        borderRadius: BorderRadius.circular(16),
+        color: const Color(0xFF2C2C3E),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            blurRadius: 8,
+            offset: const Offset(0, 4),
+          )
+        ],
         border: Border.all(color: Colors.white12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            'Ride ID: ${ride['_id'] ?? 'N/A'}',
-            style: const TextStyle(color: Colors.white60, fontSize: 13),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            'Driver: ${ride['driver_name'] ?? 'N/A'} (${ride['driver_phone'] ?? ''})',
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          Text(
-            'Vehicle: ${ride['vehicle_type'] ?? 'N/A'}',
-            style: const TextStyle(color: Colors.white70),
+          Row(
+            children: [
+              const Icon(Icons.confirmation_number, size: 18, color: Colors.white54),
+              const SizedBox(width: 6),
+              Text(
+                'Ride ID: ${ride['_id'] ?? 'N/A'}',
+                style: const TextStyle(color: Colors.white54, fontSize: 13),
+              ),
+            ],
           ),
           const SizedBox(height: 8),
-          Text(
-            'From: ${ride['pickupLocation'] ?? 'N/A'}',
-            style: const TextStyle(color: Colors.lightBlueAccent),
+          Row(
+            children: [
+              const Icon(Icons.person, size: 18, color: Colors.white),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text(
+                  'Driver: ${ride['driver_name'] ?? 'N/A'} (${ride['driver_phone'] ?? ''})',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
           ),
-          Text(
-            'To: ${ride['dropoffLocation'] ?? 'N/A'}',
-            style: const TextStyle(color: Colors.lightGreenAccent),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              const Icon(Icons.directions_car, size: 18, color: Colors.white),
+              const SizedBox(width: 6),
+              Text(
+                'Vehicle: ${ride['vehicle_type'] ?? 'N/A'}',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ],
           ),
           const SizedBox(height: 10),
+          Row(
+            children: [
+              const Icon(Icons.location_on, color: Colors.lightBlueAccent, size: 20),
+              const SizedBox(width: 6),
+              Expanded(
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      const TextSpan(
+                        text: 'From: ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ride['pickupLocation'] ?? 'N/A',
+                        style: const TextStyle(
+                          color: Colors.lightBlueAccent,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              const Icon(Icons.flag, color: Colors.lightGreenAccent, size: 20),
+              const SizedBox(width: 6),
+              Expanded(
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      const TextSpan(
+                        text: 'To: ',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ride['dropoffLocation'] ?? 'N/A',
+                        style: const TextStyle(
+                          color: Colors.lightGreenAccent,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 12),
           const Text(
             'Passengers:',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -143,16 +226,24 @@ class _RideScreenState extends State<RideScreen> {
           if (ride['passengers'] != null && ride['passengers'] is List)
             ...List<Widget>.from(
               (ride['passengers'] as List).map(
-                (p) => Padding(
-                  padding: const EdgeInsets.only(left: 8.0, bottom: 3),
-                  child: Text(
-                    '- ${p['name']} | ${p['phoneNumber']} | ${p['remarks'] ?? 'No remarks'}',
-                    style: const TextStyle(color: Colors.white60, fontSize: 13),
+                    (p) => Padding(
+                  padding: const EdgeInsets.only(left: 8.0, bottom: 4),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.person_outline, size: 16, color: Colors.white54),
+                      const SizedBox(width: 6),
+                      Expanded(
+                        child: Text(
+                          '${p['name']} | ${p['phoneNumber']}',
+                          style: const TextStyle(color: Colors.white60, fontSize: 13),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 14),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -170,16 +261,13 @@ class _RideScreenState extends State<RideScreen> {
                 ],
               ),
               Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 4,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                 decoration: BoxDecoration(
-                  color: getStatusColor(ride['status'] ?? ''),
-                  borderRadius: BorderRadius.circular(10),
+                  color: getStatusColor(ride['rideStatus'] ?? ride['status']),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Text(
-                  ride['status']?.toString().toUpperCase() ?? 'UNKNOWN',
+                  ride['rideStatus']?.toString().toUpperCase() ?? ride['status'],
                   style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -193,6 +281,7 @@ class _RideScreenState extends State<RideScreen> {
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -251,11 +340,12 @@ class _RideScreenState extends State<RideScreen> {
                             fontSize: 20,
                             color: Colors.white,
                             fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.italic,
                           ),
                         ),
                         const SizedBox(height: 10),
                         const Text(
-                          "Keep tracking active rides!",
+                          "Keep tracking rides!",
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white70,

@@ -113,45 +113,67 @@ class _DriverScreenState extends State<DriverScreeen> {
                                                 ),
                                               ),
                                             )
-                                            : SingleChildScrollView(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                            :SingleChildScrollView(
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
                                                 children: [
+                                                  const Icon(Icons.person, color: Colors.white70),
+                                                  const SizedBox(width: 8),
                                                   Text(
-                                                    "Name: ${_selectedDriver!['name']}",
+                                                    "Name: ${_selectedDriver?['name'] ?? '-'}",
                                                     style: const TextStyle(
                                                       fontSize: 22,
                                                       color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                      fontWeight: FontWeight.bold,
                                                     ),
                                                   ),
-                                                  const SizedBox(height: 10),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 10),
+                                              Row(
+                                                children: [
+                                                  const Icon(Icons.phone, color: Colors.white70),
+                                                  const SizedBox(width: 8),
                                                   Text(
-                                                    "Phone: ${_selectedDriver!['phone']}",
+                                                    "Phone: ${_selectedDriver?['phone'] ?? '-'}",
                                                     style: const TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.white70,
                                                     ),
                                                   ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 6),
+                                              Row(
+                                                children: [
                                                   Text(
-                                                    "Gender: ${_selectedDriver!['gender']}",
+                                                    "Gender: ${_selectedDriver?['gender'] ?? '-'}",
                                                     style: const TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.white70,
                                                     ),
                                                   ),
-                                                  const SizedBox(height: 10),
-                                                  Text(
-                                                    "Is Driver: ${_selectedDriver!['isDriver']}",
-                                                    style: const TextStyle(
-                                                      fontSize: 18,
-                                                      color: Colors.white70,
+                                                ],
+                                              ),
+                                              const SizedBox(height: 10),
+                                              if (_selectedDriver?['isDriver'] != null)
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      "Driver: ${_selectedDriver!['isDriver'] == true ? 'Yes' : 'No'}",
+                                                      style: const TextStyle(
+                                                        fontSize: 18,
+                                                        color: Colors.white70,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  if (_selectedDriver!['vehicle_number'] !=
-                                                      null)
+                                                  ],
+                                                ),
+                                              const SizedBox(height: 6),
+                                              if (_selectedDriver?['vehicle_number'] != null)
+                                                Row(
+                                                  children: [
                                                     Text(
                                                       "Vehicle No: ${_selectedDriver!['vehicle_number']}",
                                                       style: const TextStyle(
@@ -159,8 +181,12 @@ class _DriverScreenState extends State<DriverScreeen> {
                                                         color: Colors.white70,
                                                       ),
                                                     ),
-                                                  if (_selectedDriver!['vehicle_type'] !=
-                                                      null)
+                                                  ],
+                                                ),
+                                              const SizedBox(height: 6),
+                                              if (_selectedDriver?['vehicle_type'] != null)
+                                                Row(
+                                                  children: [
                                                     Text(
                                                       "Vehicle Type: ${_selectedDriver!['vehicle_type']}",
                                                       style: const TextStyle(
@@ -168,18 +194,12 @@ class _DriverScreenState extends State<DriverScreeen> {
                                                         color: Colors.white70,
                                                       ),
                                                     ),
-                                                  if (_selectedDriver!['seat_available'] !=
-                                                      null)
-                                                    Text(
-                                                      "Seats Available: ${_selectedDriver!['seat_available']}",
-                                                      style: const TextStyle(
-                                                        fontSize: 18,
-                                                        color: Colors.white70,
-                                                      ),
-                                                    ),
-                                                ],
-                                              ),
-                                            ),
+                                                  ],
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+
                                   ),
                                 ),
 
@@ -332,90 +352,91 @@ class _DriverScreenState extends State<DriverScreeen> {
                                                     ),
                                                   )
                                                   : SingleChildScrollView(
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        const Icon(Icons.person, color: Colors.white70),
+                                                        const SizedBox(width: 8),
+                                                        Text(
+                                                          "Name: ${_selectedDriver?['name'] ?? '-'}",
+                                                          style: const TextStyle(
+                                                            fontSize: 22,
+                                                            color: Colors.white,
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 10),
+                                                    Row(
+                                                      children: [
+                                                        const Icon(Icons.phone, color: Colors.white70),
+                                                        const SizedBox(width: 8),
+                                                        Text(
+                                                          "Phone: ${_selectedDriver?['phone'] ?? '-'}",
+                                                          style: const TextStyle(
+                                                            fontSize: 18,
+                                                            color: Colors.white70,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 6),
+                                                    Row(
                                                       children: [
                                                         Text(
-                                                          "Name: ${_selectedDriver!['name']}",
-                                                          style:
-                                                              const TextStyle(
-                                                                fontSize: 22,
-                                                                color:
-                                                                    Colors
-                                                                        .white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                        ),
-                                                        const SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                        Text(
-                                                          "Phone: ${_selectedDriver!['phone']}",
+                                                          "Gender: ${_selectedDriver?['gender'] ?? '-'}",
                                                           style: const TextStyle(
                                                             fontSize: 18,
-                                                            color:
-                                                                Colors.white70,
+                                                            color: Colors.white70,
                                                           ),
                                                         ),
-                                                        Text(
-                                                          "Gender: ${_selectedDriver!['gender']}",
-                                                          style: const TextStyle(
-                                                            fontSize: 18,
-                                                            color:
-                                                                Colors.white70,
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 10),
+                                                    if (_selectedDriver?['isDriver'] != null)
+                                                      Row(
+                                                        children: [
+                                                          Text(
+                                                            "Driver: ${_selectedDriver!['isDriver'] == true ? 'Yes' : 'No'}",
+                                                            style: const TextStyle(
+                                                              fontSize: 18,
+                                                              color: Colors.white70,
+                                                            ),
                                                           ),
-                                                        ),
-                                                        const SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                        Text(
-                                                          "Is Driver: ${_selectedDriver!['isDriver']}",
-                                                          style: const TextStyle(
-                                                            fontSize: 18,
-                                                            color:
-                                                                Colors.white70,
-                                                          ),
-                                                        ),
-                                                        if (_selectedDriver!['vehicle_number'] !=
-                                                            null)
+                                                        ],
+                                                      ),
+                                                    const SizedBox(height: 6),
+                                                    if (_selectedDriver?['vehicle_number'] != null)
+                                                      Row(
+                                                        children: [
                                                           Text(
                                                             "Vehicle No: ${_selectedDriver!['vehicle_number']}",
                                                             style: const TextStyle(
                                                               fontSize: 18,
-                                                              color:
-                                                                  Colors
-                                                                      .white70,
+                                                              color: Colors.white70,
                                                             ),
                                                           ),
-                                                        if (_selectedDriver!['vehicle_type'] !=
-                                                            null)
+                                                        ],
+                                                      ),
+                                                    const SizedBox(height: 6),
+                                                    if (_selectedDriver?['vehicle_type'] != null)
+                                                      Row(
+                                                        children: [
                                                           Text(
                                                             "Vehicle Type: ${_selectedDriver!['vehicle_type']}",
                                                             style: const TextStyle(
                                                               fontSize: 18,
-                                                              color:
-                                                                  Colors
-                                                                      .white70,
+                                                              color: Colors.white70,
                                                             ),
                                                           ),
-                                                        if (_selectedDriver!['seat_available'] !=
-                                                            null)
-                                                          Text(
-                                                            "Seats Available: ${_selectedDriver!['seat_available']}",
-                                                            style: const TextStyle(
-                                                              fontSize: 18,
-                                                              color:
-                                                                  Colors
-                                                                      .white70,
-                                                            ),
-                                                          ),
-                                                      ],
-                                                    ),
-                                                  ),
+                                                        ],
+                                                      ),
+                                                  ],
+                                                ),
+                                              ),
                                         ),
                                       ),
                                     ],
