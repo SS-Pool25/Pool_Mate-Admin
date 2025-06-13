@@ -69,6 +69,11 @@ class _DashboardState extends State<Dashboard> {
       yearlyStats = yearly;
       loading = false;
     });
+    print(todayStats);
+    print(yesterdayStats);
+    print(monthlyStats);
+    print(yearlyStats);
+
   }
 
   Widget buildBarChart(Map<String, dynamic>? data, String title) {
@@ -77,23 +82,25 @@ class _DashboardState extends State<Dashboard> {
     final List<_RideData> chartData = [
       _RideData(
         'Demand',
-        data['demandNo']?['total'] ?? 0,
-        data['demandNo']?['completed'] ?? 0,
-        data['demandNo']?['cancelled'] ?? 0,
+        data['demandride_count']?['total'] ?? 0,
+        data['demandride_count']?['completed'] ?? 0,
+        data['demandride_count']?['cancelled'] ?? 0,
       ),
       _RideData(
         'Schedule',
-        data['scheduleNo']?['total'] ?? 0,
-        data['scheduleNo']?['completed'] ?? 0,
-        data['scheduleNo']?['cancelled'] ?? 0,
+        data['scheduleride_count']?['total'] ?? 0,
+        data['scheduleride_count']?['completed'] ?? 0,
+        data['scheduleride_count']?['cancelled'] ?? 0,
       ),
       _RideData(
         'Pool',
-        data['poolNo']?['total'] ?? 0,
-        data['poolNo']?['completed'] ?? 0,
-        data['poolNo']?['cancelled'] ?? 0,
+        data['poolride_count']?['total'] ?? 0,
+        data['poolride_count']?['completed'] ?? 0,
+        data['poolride_count']?['cancelled'] ?? 0,
       ),
     ];
+    print(chartData.map((e) => '${e.type}: ${e.total}, ${e.completed}, ${e.cancelled}').toList());
+
 
     return SfCartesianChart(
       backgroundColor: const Color(0xFF2A2A3C),
@@ -121,6 +128,8 @@ class _DashboardState extends State<Dashboard> {
           xValueMapper: (d, _) => d.type,
           yValueMapper: (d, _) => d.total,
           color: const Color(0xFF2196F3),
+          spacing: 0.2, // spacing between grouped bars
+          width: 0.2,   // width of each bar
         ),
         ColumnSeries<_RideData, String>(
           name: 'Completed',
@@ -128,6 +137,8 @@ class _DashboardState extends State<Dashboard> {
           xValueMapper: (d, _) => d.type,
           yValueMapper: (d, _) => d.completed,
           color: const Color(0xFF4CAF50),
+          spacing: 0.2,
+          width: 0.2,
         ),
         ColumnSeries<_RideData, String>(
           name: 'Cancelled',
@@ -135,8 +146,11 @@ class _DashboardState extends State<Dashboard> {
           xValueMapper: (d, _) => d.type,
           yValueMapper: (d, _) => d.cancelled,
           color: const Color(0xFFF44336),
+          spacing: 0.2,
+          width: 0.2,
         ),
       ],
+
     );
   }
 
