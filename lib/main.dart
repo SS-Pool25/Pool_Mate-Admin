@@ -3,6 +3,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:ss_pool/screens/dashboard.dart';
 import 'package:ss_pool/screens/driverscreen.dart';
 import 'package:ss_pool/screens/loginpage.dart';
+import 'package:ss_pool/screens/profilescreen.dart';
 import 'package:ss_pool/screens/ridesscreen.dart';
 import 'package:ss_pool/screens/userscreen.dart';
 
@@ -33,7 +34,6 @@ class MyApp extends StatelessWidget {
           },
         ),
       ),
-
       home: LoginScreen(),
       routes: {
         '/login': (context) => const LoginScreen(),
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         '/users': (context) => UserScreen(),
         '/drivers': (context) => DriverScreeen(),
         '/rides': (context) => RideScreen(),
-        '/profile': (context) => const Dashboard(),
+        '/profile': (context) => ProfileScreen(),
       },
     );
   }
