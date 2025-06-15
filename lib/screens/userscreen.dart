@@ -114,44 +114,69 @@ class _UserScreenState extends State<UserScreen> {
                                               ),
                                             )
                                             : SingleChildScrollView(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
                                                 children: [
+                                                  const Icon(Icons.person, color: Colors.white, size: 24),
+                                                  const SizedBox(width: 8),
                                                   Text(
-                                                    "Name: ${_selectedUser!['name']}",
+                                                    _selectedUser!['name'] ?? 'N/A',
                                                     style: const TextStyle(
                                                       fontSize: 22,
                                                       color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold,
+                                                      fontWeight: FontWeight.bold,
                                                     ),
                                                   ),
-                                                  const SizedBox(height: 10),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 16),
+
+                                              Row(
+                                                children: [
+                                                  const Icon(Icons.phone, color: Colors.white70, size: 20),
+                                                  const SizedBox(width: 8),
                                                   Text(
-                                                    "Phone: ${_selectedUser!['phone']}",
+                                                    _selectedUser!['phone'] ?? 'N/A',
                                                     style: const TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.white70,
                                                     ),
                                                   ),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 8),
+
+                                              Row(
+                                                children: [
                                                   Text(
-                                                    "Gender: ${_selectedUser!['gender']}",
+                                                    "Gender: ${_selectedUser!['gender'] ?? 'N/A'}",
                                                     style: const TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.white70,
                                                     ),
                                                   ),
-                                                  const SizedBox(height: 10),
+                                                ],
+                                              ),
+                                              const SizedBox(height: 8),
+
+                                              Row(
+                                                children: [
                                                   Text(
-                                                    "Is Driver: ${_selectedUser!['isDriver']}",
+                                                    "Driver: ${_selectedUser!['isDriver'] == true ? 'Yes' : 'No'}",
                                                     style: const TextStyle(
                                                       fontSize: 18,
                                                       color: Colors.white70,
                                                     ),
                                                   ),
-                                                  if (_selectedUser!['vehicle_number'] !=
-                                                      null)
+                                                ],
+                                              ),
+                                              const SizedBox(height: 8),
+
+                                              if (_selectedUser!['vehicle_number'] != null)
+                                                Row(
+                                                  children: [
                                                     Text(
                                                       "Vehicle No: ${_selectedUser!['vehicle_number']}",
                                                       style: const TextStyle(
@@ -159,27 +184,28 @@ class _UserScreenState extends State<UserScreen> {
                                                         color: Colors.white70,
                                                       ),
                                                     ),
-                                                  if (_selectedUser!['vehicle_type'] !=
-                                                      null)
-                                                    Text(
-                                                      "Vehicle Type: ${_selectedUser!['vehicle_type']}",
-                                                      style: const TextStyle(
-                                                        fontSize: 18,
-                                                        color: Colors.white70,
+                                                  ],
+                                                ),
+
+                                              if (_selectedUser!['vehicle_type'] != null)
+                                                Padding(
+                                                  padding: const EdgeInsets.only(top: 8),
+                                                  child: Row(
+                                                    children: [
+                                                      Text(
+                                                        "Type: ${_selectedUser!['vehicle_type']}",
+                                                        style: const TextStyle(
+                                                          fontSize: 18,
+                                                          color: Colors.white70,
+                                                        ),
                                                       ),
-                                                    ),
-                                                  if (_selectedUser!['seat_available'] !=
-                                                      null)
-                                                    Text(
-                                                      "Seats Available: ${_selectedUser!['seat_available']}",
-                                                      style: const TextStyle(
-                                                        fontSize: 18,
-                                                        color: Colors.white70,
-                                                      ),
-                                                    ),
-                                                ],
-                                              ),
-                                            ),
+                                                    ],
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+
                                   ),
                                 ),
 
@@ -202,7 +228,7 @@ class _UserScreenState extends State<UserScreen> {
                                               color: Colors.white,
                                             ),
                                             decoration: InputDecoration(
-                                              labelText: 'Search User',
+                                              labelText: 'Search User by Name or Phone Number',
                                               labelStyle: const TextStyle(
                                                 color: Colors.white70,
                                               ),
@@ -332,90 +358,98 @@ class _UserScreenState extends State<UserScreen> {
                                                     ),
                                                   )
                                                   : SingleChildScrollView(
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        const Icon(Icons.person, color: Colors.white, size: 24),
+                                                        const SizedBox(width: 8),
+                                                        Text(
+                                                          _selectedUser!['name'] ?? 'N/A',
+                                                          style: const TextStyle(
+                                                            fontSize: 22,
+                                                            color: Colors.white,
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 16),
+
+                                                    Row(
+                                                      children: [
+                                                        const Icon(Icons.phone, color: Colors.white70, size: 20),
+                                                        const SizedBox(width: 8),
+                                                        Text(
+                                                          _selectedUser!['phone'] ?? 'N/A',
+                                                          style: const TextStyle(
+                                                            fontSize: 18,
+                                                            color: Colors.white70,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 8),
+
+                                                    Row(
                                                       children: [
                                                         Text(
-                                                          "Name: ${_selectedUser!['name']}",
-                                                          style:
-                                                              const TextStyle(
-                                                                fontSize: 22,
-                                                                color:
-                                                                    Colors
-                                                                        .white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                        ),
-                                                        const SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                        Text(
-                                                          "Phone: ${_selectedUser!['phone']}",
+                                                          "Gender: ${_selectedUser!['gender'] ?? 'N/A'}",
                                                           style: const TextStyle(
                                                             fontSize: 18,
-                                                            color:
-                                                                Colors.white70,
+                                                            color: Colors.white70,
                                                           ),
                                                         ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 8),
+
+                                                    Row(
+                                                      children: [
                                                         Text(
-                                                          "Gender: ${_selectedUser!['gender']}",
+                                                          "Driver: ${_selectedUser!['isDriver'] == true ? 'Yes' : 'No'}",
                                                           style: const TextStyle(
                                                             fontSize: 18,
-                                                            color:
-                                                                Colors.white70,
+                                                            color: Colors.white70,
                                                           ),
                                                         ),
-                                                        const SizedBox(
-                                                          height: 10,
-                                                        ),
-                                                        Text(
-                                                          "Is Driver: ${_selectedUser!['isDriver']}",
-                                                          style: const TextStyle(
-                                                            fontSize: 18,
-                                                            color:
-                                                                Colors.white70,
-                                                          ),
-                                                        ),
-                                                        if (_selectedUser!['vehicle_number'] !=
-                                                            null)
+                                                      ],
+                                                    ),
+                                                    const SizedBox(height: 8),
+
+                                                    if (_selectedUser!['vehicle_number'] != null)
+                                                      Row(
+                                                        children: [
                                                           Text(
                                                             "Vehicle No: ${_selectedUser!['vehicle_number']}",
                                                             style: const TextStyle(
                                                               fontSize: 18,
-                                                              color:
-                                                                  Colors
-                                                                      .white70,
+                                                              color: Colors.white70,
                                                             ),
                                                           ),
-                                                        if (_selectedUser!['vehicle_type'] !=
-                                                            null)
-                                                          Text(
-                                                            "Vehicle Type: ${_selectedUser!['vehicle_type']}",
-                                                            style: const TextStyle(
-                                                              fontSize: 18,
-                                                              color:
-                                                                  Colors
-                                                                      .white70,
+                                                        ],
+                                                      ),
+
+                                                    if (_selectedUser!['vehicle_type'] != null)
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 8),
+                                                        child: Row(
+                                                          children: [
+                                                            Text(
+                                                              "Type: ${_selectedUser!['vehicle_type']}",
+                                                              style: const TextStyle(
+                                                                fontSize: 18,
+                                                                color: Colors.white70,
+                                                              ),
                                                             ),
-                                                          ),
-                                                        if (_selectedUser!['seat_available'] !=
-                                                            null)
-                                                          Text(
-                                                            "Seats Available: ${_selectedUser!['seat_available']}",
-                                                            style: const TextStyle(
-                                                              fontSize: 18,
-                                                              color:
-                                                                  Colors
-                                                                      .white70,
-                                                            ),
-                                                          ),
-                                                      ],
-                                                    ),
-                                                  ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                  ],
+                                                ),
+                                              ),
+
                                         ),
                                       ),
                                     ],
@@ -441,7 +475,7 @@ class _UserScreenState extends State<UserScreen> {
                                               color: Colors.white,
                                             ),
                                             decoration: InputDecoration(
-                                              labelText: 'Search User',
+                                              labelText: 'Search User by Name or Phone Number',
                                               labelStyle: const TextStyle(
                                                 color: Colors.white70,
                                               ),
