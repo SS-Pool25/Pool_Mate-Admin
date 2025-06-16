@@ -14,7 +14,7 @@ class SidePanel extends StatelessWidget {
             Icon(Icons.supervised_user_circle, size: 120, color: Colors.white),
             SizedBox(height: 20),
             Text(
-              "User Portal",
+              "Admin Portal",
               style: TextStyle(fontSize: 28, color: Colors.white),
             ),
           ],
