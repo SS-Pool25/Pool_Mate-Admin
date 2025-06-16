@@ -88246,7 +88246,7 @@ giP(a){return this.d}}
 A.O_.prototype={
 S(a){var s=null,r=A.vP(B.ao,s,s),q=A.aq(4280163887)
 q=r.ar9(new A.BG(A.al([B.a4,new A.lz(),B.I,new A.lz(),B.bb,new A.lz(),B.aU,new A.lz(),B.bc,new A.lz(),B.ba,new A.lz()],t.LH,t.nd)),q)
-return new A.B0(new A.np(s),A.al(["/login",new A.ael(),"/dashboard",new A.aem(),"/users",new A.aen(),"/drivers",new A.aeo(),"/rides",new A.aep(),"/profile",new A.aeq()],t.N,t.Ab),"Crypto Dashboard",q,!1,s)}}
+return new A.B0(new A.np(s),A.al(["/login",new A.ael(),"/dashboard",new A.aem(),"/users",new A.aen(),"/drivers",new A.aeo(),"/rides",new A.aep(),"/profile",new A.aeq()],t.N,t.Ab),"SSPOOL Dashboard",q,!1,s)}}
 A.ael.prototype={
 $1(a){return B.vt},
 $S:214}
