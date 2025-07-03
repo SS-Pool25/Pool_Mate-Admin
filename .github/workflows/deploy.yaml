@@ -24,8 +24,8 @@ jobs:
       - name: Build Flutter Web
         run: flutter build web --release
       
-      - name: Fix base href for GitHub Pages subpath
-        run: sed -i 's|<base href="/">|' build/web/index.html
+      # - name: Fix base href for GitHub Pages subpath
+      #   run: sed -i 's|<base href="/">|<base href="/Pool_Mate-Admin/">|' build/web/index.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
